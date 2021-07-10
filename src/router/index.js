@@ -6,6 +6,7 @@ import Carinfo from '../views/carManage/carInfo.vue'
 import OrgInfo from '../views/systemManage/orgInfo.vue'
 import UserInfo from '../views/systemManage/userInfo.vue'
 import DriverInfo from '../views/driverManage/driverInfo.vue'
+import DashBoard from "@/views/Dashboard";
 
 Vue.use(VueRouter)
 
@@ -16,21 +17,23 @@ const routes = [{
     path: '/home',
     name: 'Home',
     component: Home,
-    redirect: '/home/carinfo',
-    children:[ {
-        path: 'carinfo',
-        component: Carinfo
-      },{
-        path: 'orgInfo',
-        component: OrgInfo
-      },{
-        path: 'userInfo',
-        component: UserInfo
-      },{
-        path: 'driverInfo',
-        component: DriverInfo
-      }
-    ]
+    redirect: '/home/dashboard',
+    children:[{
+      path: 'dashboard',
+      component: DashBoard
+    },{
+      path: 'carinfo',
+      component: Carinfo
+    },{
+      path: 'orgInfo',
+      component: OrgInfo
+    },{
+      path: 'userInfo',
+      component: UserInfo
+    },{
+      path: 'driverInfo',
+      component: DriverInfo
+    }]
   },{
     path: '/login',
     name: 'Login',
