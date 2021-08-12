@@ -22,7 +22,7 @@ const routes = [{
       path: 'dashboard',
       component: DashBoard
     },{
-      path: 'carinfo',
+      path: 'carInfo',
       component: Carinfo
     },{
       path: 'orgInfo',

@@ -31,7 +31,7 @@
         <el-row>
             <el-col :span="24">
                 <el-table
-                    :data="tableData"
+                    :data="carList"
                     border
                     style="width: 100%">
                     <el-table-column
@@ -187,22 +187,23 @@ import {getCarList, getOrgList, getDriverList, getCarTypeList, getCarStatusList}
 export default {
     data() {
         return {
-            tableData: [],
+            selectOrg: '',
+            keyString: '',
+
+            carList: [],
             orgList: [],
             driverList: [],
             carTypeList: [],
             carStatusList: [],
-            selectOrg: '',
+
             operateDialogVisible: false,
             operateDisable: false,
             dialogTitle: '',
-            visible: true,
-            carInfo: {},
+            operateCarForm: {},
+
             currentPage: 1,
             pageSize: 10,
-            carTotal: 0,
-            operateCarForm: {},
-            keyString: ''
+            carTotal: 0
         }
     },
     created() {
@@ -222,33 +223,33 @@ export default {
         },
         visibleAddDialog() {
             this.operateDisable = false,
-                this.operateDialogVisible = true,
-                this.operateDialogTitle = '新增车辆'
+            this.operateDialogVisible = true,
+            this.operateDialogTitle = '新增车辆'
         },
         visibleEditDialog(row) {
             console.log(this.operateCarForm)
             this.operateDisable = false,
 
-                this.operateDialogTitle = '编辑车辆',
-                this.operateCarForm.carID = row.carID,
-                this.operateCarForm.carNumber = row.carNumber,
-                this.operateCarForm.carStatus = row.carStatus,
-                this.operateCarForm.orgID = row.orgID,
-                this.operateCarForm.driverID = row.driverID,
-                this.operateCarForm.carType = row.carType
+            this.operateDialogTitle = '编辑车辆',
+            this.operateCarForm.carID = row.carID,
+            this.operateCarForm.carNumber = row.carNumber,
+            this.operateCarForm.carStatus = row.carStatus,
+            this.operateCarForm.orgID = row.orgID,
+            this.operateCarForm.driverID = row.driverID,
+            this.operateCarForm.carType = row.carType
 
             this.operateDialogVisible = true
         },
         visibleShowDialog(row) {
             this.operateDisable = true,
-                this.operateDialogVisible = true,
-                this.operateDialogTitle = '车辆信息',
-                this.operateCarForm.carID = row.carID,
-                this.operateCarForm.carNumber = row.carNumber,
-                this.operateCarForm.carStatus = row.carStatus,
-                this.operateCarForm.orgID = row.orgID,
-                this.operateCarForm.driverID = row.driverID,
-                this.operateCarForm.carType = row.carType
+            this.operateDialogVisible = true,
+            this.operateDialogTitle = '车辆信息',
+            this.operateCarForm.carID = row.carID,
+            this.operateCarForm.carNumber = row.carNumber,
+            this.operateCarForm.carStatus = row.carStatus,
+            this.operateCarForm.orgID = row.orgID,
+            this.operateCarForm.driverID = row.driverID,
+            this.operateCarForm.carType = row.carType
         },
         deleteCar(row) {
             console.log(row.carID)
@@ -299,21 +300,21 @@ export default {
             } else if (this.operateDialogTitle === '车辆信息') {
                 this.operateDialogVisible = false,
 
-                    this.operateCarForm.carNumber = '',
-                    this.operateCarForm.carStatus = '',
-                    this.operateCarForm.orgID = '',
-                    this.operateCarForm.driverID = '',
-                    this.operateCarForm.carType = ''
-            }
-        },
-        cancelOperate() {
-            this.operateDialogVisible = false,
-
                 this.operateCarForm.carNumber = '',
                 this.operateCarForm.carStatus = '',
                 this.operateCarForm.orgID = '',
                 this.operateCarForm.driverID = '',
                 this.operateCarForm.carType = ''
+            }
+        },
+        cancelOperate() {
+            this.operateDialogVisible = false,
+
+            this.operateCarForm.carNumber = '',
+            this.operateCarForm.carStatus = '',
+            this.operateCarForm.orgID = '',
+            this.operateCarForm.driverID = '',
+            this.operateCarForm.carType = ''
         },
         dispatchStatusFormatter(row) {
             if (row.carDispatchStatus === 0) {

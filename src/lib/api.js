@@ -13,6 +13,12 @@ export function getOrgList(that) {
         .then(response => (that.orgList = response.data))
 }
 
+export function getOrgTree(that) {
+    axios
+        .get('http://127.0.0.1:9090/org/tree')
+        .then(response => (that.orgTree.push(response.data)))
+}
+
 export function getDriverList(that) {
     axios
         .get('http://127.0.0.1:9090/driver/list')
